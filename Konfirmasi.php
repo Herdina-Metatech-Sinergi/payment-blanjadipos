@@ -36,6 +36,11 @@ class Konfirmasi extends CI_Controller {
 			echo $this->session->set_flashdata('message', '<div class="alert alert-success"><center>Sukses Melakukan Konfirmasi Pembayaran Pesanan!</center></div>');
 			redirect('konfirmasi/index?success');
 		}else{
+			// Add crypto as payment option
+			if (isset($_GET['crypto']) && $_GET['crypto'] == '1') {
+				$this->crypto_payment($kode_transaksi);
+			}
+			// Rest of existing code...
 			$data['title'] = 'Konfirmasi Pesanan';
 			$data['description'] = description();
 			$data['keywords'] = keywords();
